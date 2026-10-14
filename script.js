@@ -236,7 +236,6 @@ function initAbout() {
 
 function initCourse() {
   const track = document.querySelector('[data-course-track]');
-  const symbols = [...document.querySelectorAll('.pillar .symbol')];
   const current = document.querySelector('[data-course-current]');
   if (!track) return;
 
@@ -250,12 +249,8 @@ function initCourse() {
         onUpdate: (self) => {
           const index = Math.min(3, Math.floor(self.progress * 4));
           if (current) current.textContent = String(index + 1).padStart(2, '0');
-          symbols.forEach((symbol, i) => { symbol.style.transform += ''; symbol.dataset.active = String(i === index); });
         },
       },
-    });
-    symbols.forEach((symbol, index) => {
-      gsap.to(symbol, { rotation: 150 + index * 35, rotateX: index % 2 ? 28 : -18, ease: 'none', scrollTrigger: { trigger: '.course-film', start: 'top top', end: 'bottom bottom', scrub: 1 } });
     });
   });
 }
